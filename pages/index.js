@@ -11,8 +11,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Link className={styles.title} href="/posts/first-post">
-          你好，NEXTJS！
+        <Link href="/posts/first-post">
+          <a>你好，NEXTJS！</a>
         </Link>
 
         <p className={styles.description}>
