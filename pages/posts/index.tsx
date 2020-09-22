@@ -1,20 +1,32 @@
-import { NextPage } from "next"
-import { usePosts } from "hooks/usePosts"
+import { GetStaticProps, NextPage } from "next"
+import { getSortedPostsData } from "lib/posts"
 
-const PostsIndex: NextPage = () => {
-  const { isLoading, isEmpty, posts } = usePosts()
+
+type Props = {
+  posts: Post[]
+}
+const PostsIndex: NextPage<Props> = (props) => {
+  console.log(props.posts);
+  const {posts} = props
   return (
     <div>
       <h1>文章列表</h1>
-      {isLoading ? <div>加载中...</div> :
-        isEmpty ? <div>没有文章</div> :
-          posts.map(p => (<div key={p.id}>
-            {p.title}
-          </div>))
+      {
+        posts.map(p=><div key={p.id}>
+          {p.title}
+        </div>)
       }
-
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await getSortedPostsData()
+  return {
+    props: {
+      posts
+    }
+  }
 }
 
 export default PostsIndex
