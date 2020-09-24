@@ -14,7 +14,7 @@ export const usePosts = () => {
   useEffect(() => {
     setIsLoading(true)
     axios.get("/api/v1/posts").then(responese => {
-      console.log(responese.data)
+      // console.log(responese.data)
       setPosts(responese.data)
       setIsEmpty(responese.data.length === 0)
       setIsLoading(false)

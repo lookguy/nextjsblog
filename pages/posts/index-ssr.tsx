@@ -16,7 +16,6 @@ const ssrPage: NextPage<Props> = (props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log(context);
   const ua = context.req.headers["user-agent"]
   const ret = new UAParser(ua).getResult()
   return {
